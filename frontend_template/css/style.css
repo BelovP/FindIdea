@@ -27,8 +27,6 @@ body {
   flex-direction: row;
   align-items: stretch;
   /* justify-content: center; */
-  position: relative;
-
 }
 
 
@@ -36,12 +34,10 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  align-self: ;
-  /* justify-content: center; */
+  /* justify-content: space-around; */ 
   background-color: #dcdbdb;
-  flex: 1;
-  /*max-width: 20%;*/
-  padding-left: 5rem;
+  max-width: 20%;
+/*   padding-left: 5rem; */
   align-items:  stretch;
   align-content:  stretch;
 /*   height:auto; overflow:auto */
@@ -64,11 +60,14 @@ body {
   position:  relative;
   align-items:  stretch;
   align-content:  stretch;
-
-
-/*   opacity:0.5; */
-  
 }
+
+.user-info {
+  display:  inline-flex;
+  justify-content: space-around;
+}
+
+
 
 
 
