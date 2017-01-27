@@ -1,0 +1,150 @@
+class BaseStore {
+  subscribed = [];
+  update() {
+    var state = this.state;
+    this.subscribed.forEach(function(subscribe) {
+      subscribe(state);
+    });
+  }
+  subscribe(listener) {
+    this.subscribed.push(listener);
+  }
+  unsubscribe(listener) {
+    var index = this.subscribed.indexOf(listener);
+    if (index != -1) {
+      this.subscribed.splice(index, 1);
+    }
+  }
+}
+
+class CommentStore extends BaseStore {
+  state = {
+    comments: [
+      {
+        avatar: '',
+        text: 'My comment is here',
+        liked: false
+      },
+      {
+        avatar: '',
+        text: 'Different text',
+        liked: true
+      },
+      {
+        avatar: '',
+        text: 'Third comment',
+        liked: false
+      }
+    ]
+  };
+  addComment(newComment) {
+    this.state.comments = [newComment].concat(this.state.comments);
+    this.update();
+  }
+}
+
+var commentStore = new CommentStore();
+
+class Comment extends React.Component {
+  state = {
+    liked: false
+  };
+  componentWillMount() {
+    this.setState({ liked: this.props.liked });
+  }
+  componentDidMount() {
+  }
+  handleClick(e) {
+    this.setState({
+      liked: !this.state.liked
+    });
+  }
+  render() {
+    var avatar = this.props.avatar;
+    var text = this.props.text;
+    var liked = this.state.liked;
+    var likedClass = liked ? "_active" : "";
+    return <div className="comment">
+			<div className="comment__avatar avatar" style={{
+          backgroundImage: "url('" + avatar + "')"
+        }}></div>
+			<div className="comment__text">{text}</div>
+			<div className="comment__actions">
+				<button 
+          className={"comment__like " + likedClass}
+          onClick={this.handleClick.bind(this)}
+        />
+			</div>
+    </div>;
+  }
+}
+
+class CommentsList extends React.Component {
+  state = {
+    comments: commentStore.state.comments
+  };
+  componentWillMount() {
+    this.handleStoreChangeBind = this.handleStoreChanged.bind(this);
+    commentStore.subscribe(this.handleStoreChangeBind);
+  }
+  componentWillUnmount() {
+    commentsStore.unsubscribe(this.handleStoreChangeBind);
+  }
+  handleStoreChanged(newState) {
+    this.setState({
+      comments: newState.comments
+    });
+  }
+  render() {
+    var children = [];
+    this.state.comments.forEach(function(comment) {
+      children.push(
+        <Comment 
+          avatar={comment.avatar} 
+          text={comment.text}
+          liked={comment.liked} 
+        />
+      );
+    });
+    
+    return <div className="comments__list">
+       { children }
+    </div>;
+  }
+}
+
+class CommentsForm extends React.Component {
+  handleClick() {
+    commentStore.addComment({
+      avatar: '',
+      text: this.refs.text.value,
+      liked: false
+    });
+  }
+  render() {
+    return <div className="comments__form">
+      <textarea ref="text" className="comments__new-text" />
+      <button 
+        className="comments__new-button" 
+        onClick={this.handleClick.bind(this)}
+      >
+        Add comment
+      </button>
+	  </div>;
+  }
+}
+
+class Comments extends React.Component {
+  render() {
+    return <div class="comments">
+      <CommentsForm />
+      <CommentsList />
+    </div>;
+  }
+}
+      
+ReactDOM.render(
+  <Comments />,
+  $('#root').get(0)
+);
+
