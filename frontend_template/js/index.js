@@ -102,6 +102,7 @@ var Comment = function (_React$Component) {
     });
   };
 
+
   Comment.prototype.render = function render() {
     var avatar = this.props.avatar;
     var text = this.props.text;
