@@ -57,7 +57,7 @@ class CommentsForm extends React.Component {
         onClick={this.handleLogoutClick.bind(this)}
       >
         Logout
-      </button>
+      </button><br></br>
       <span>Use root as the username and 123 as the password</span>
 	  </div>;
   }
