@@ -12,6 +12,4 @@ ReactDOM.render(
 );
 
 window.$ = $;
-console.log("Hello");
-console.log("New version");
 commentStore.loadData();
