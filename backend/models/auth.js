@@ -8,7 +8,7 @@ var db = require('./db');
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
-
+		console.log('in auth');
 		db.get('SELECT * FROM users WHERE username = ?', [username], function(err, row) {
 			if (err) {
 				done(err);
@@ -39,7 +39,9 @@ passport.deserializeUser(function(user, done) {
 
 module.exports = {
 	loggedIn: function(req, res, next) {
+		console.log('kek');
 		if (req.user) {
+			console.log('kek');
 			next();
 		} else {
 			var err = new Error('Authentication required')
