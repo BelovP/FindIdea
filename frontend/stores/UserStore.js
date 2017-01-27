@@ -7,8 +7,6 @@ class UserStore extends BaseStore {
     user: null
   };
   login(userdata) {
-    console.log(userdata);
-    console.log('in login');
     var store = this;
     $.ajax({
       url: '/users/login',
@@ -22,8 +20,6 @@ class UserStore extends BaseStore {
   }
 
   register(userdata) {
-    console.log(userdata);
-    console.log('in register');
     var store = this;
     $.ajax({
       url: '/users/register',
@@ -37,7 +33,6 @@ class UserStore extends BaseStore {
   }
 
   logout() {
-    console.log('in logout');
     $.ajax({
       url: '/users/logout',
       method: 'post', dataType: 'json',
