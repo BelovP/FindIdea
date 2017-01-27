@@ -1,6 +1,6 @@
 /* Pen-specific styles */
 
-html, body, section {
+html, body{
   height: 100%;
 }
 
@@ -16,6 +16,7 @@ body {
 }
 
 
+
 /* h1 {
   font-size: 1.75rem;
   margin: 0 0 0.75rem 0;
@@ -25,49 +26,38 @@ body {
 .container-fluid {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  /* /align-content:  stretch; */
   /* justify-content: center; */
+  height:  100%;
 }
 
 
 .left-half {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   /* justify-content: space-around; */ 
   background-color: #dcdbdb;
-  max-width: 20%;
+  width: 10%;
 /*   padding-left: 5rem; */
-  align-items:  stretch;
-  align-content:  stretch;
+  align-items:  center;
+  align-content:  center;
 /*   height:auto; overflow:auto */
 
 }
 .pic-circle-corner {
 
-display: block;
-
-width: 100px;
-
-height: 100px;
-
-margin: .8em auto;
-
-background-size: cover;
-
-background-repeat: no-repeat;
-
-background-position: center center;
-
--webkit-border-radius: 50%;
-
--moz-border-radius: 50%;
-
-border-radius: 50%;
-
-border: 5px solid #eee;
-
-box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: .8em auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid #eee;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -75,14 +65,14 @@ box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-self: flex-start;
   flex-basis:  auto;
+  overflow: auto;
   /*background-color: #edf5ee;*/
   background-image: url('https://pp.vk.me/c633123/v633123508/381ff/XOYrcIzo_lA.jpg');
   background-color: rgba(0,0,0,0.9);
-  background-size: 100;
-  background-repeat: repeat-y;
-  flex:  2;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  flex:  1;
   padding: 2em 3em; 
   position:  relative;
   align-items:  stretch;
@@ -94,7 +84,11 @@ box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
   justify-content: space-around;
 }
 
-
+#root {
+  display: flex;
+  flex-direction:  column;
+  height: 100% ;
+}
 
 
 
@@ -107,6 +101,7 @@ box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 	display:  flex;
 	flex-direction:  row;
   flex-basis:  50%;
+  flex-grow: 1;
 	border:  1px solid #909090;
 	padding:  1em;
 	margin-bottom: 1em;
