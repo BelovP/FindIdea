@@ -8,7 +8,6 @@ var db = require('./db');
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
-
 		db.get('SELECT * FROM users WHERE username = ?', [username], function(err, row) {
 			if (err) {
 				done(err);

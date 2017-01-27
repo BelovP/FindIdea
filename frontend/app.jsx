@@ -11,12 +11,5 @@ ReactDOM.render(
   $('#root').get(0)
 );
 
-/*ReactDOM.render(
-  <Comments />,
-  $('#root').get(0)
-);*/
-
 window.$ = $;
-console.log("Hello");
-console.log("New version");
 commentStore.loadData();

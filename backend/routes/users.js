@@ -8,6 +8,8 @@ router.post('/login', function(req, res, next) {
 	res.json(req.user);
 });
 
+router.post('/register', passport.register);
+
 router.all('/logout', function(req, res, next) {
 	req.logout();
 	res.json({ success: true });

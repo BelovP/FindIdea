@@ -56,11 +56,6 @@
 	
 	ReactDOM.render(React.createElement(StoriesPage, null), $('#root').get(0));
 	
-	/*ReactDOM.render(
-	  <Comments />,
-	  $('#root').get(0)
-	);*/
-	
 	window.$ = $;
 	console.log("Hello");
 	console.log("New version");
@@ -32182,7 +32177,7 @@
 	    key: 'login',
 	    value: function login(userdata) {
 	      console.log(userdata);
-	      console.log('in userdata');
+	      console.log('in login');
 	      var store = this;
 	      $.ajax({
 	        url: '/users/login',
@@ -32195,8 +32190,29 @@
 	      });
 	    }
 	  }, {
+	    key: 'register',
+	    value: function register(userdata) {
+	      console.log(userdata);
+	      console.log('in register');
+	      var store = this;
+	      $.ajax({
+	        url: '/users/register',
+	        method: 'post', dataType: 'json',
+	        data: userdata,
+	        success: function success(data) {
+	          store.state.user = data;
+	          store.update();
+	        }
+	      });
+	    }
+	  }, {
 	    key: 'logout',
 	    value: function logout() {
+	      console.log('in logout');
+	      $.ajax({
+	        url: '/users/logout',
+	        method: 'post', dataType: 'json'
+	      });
 	      this.state.user = null;
 	      this.update();
 	    }
@@ -32554,9 +32570,25 @@
 	  }
 	
 	  _createClass(CommentsForm, [{
-	    key: 'handleClick',
-	    value: function handleClick() {
+	    key: 'handleLoginClick',
+	    value: function handleLoginClick() {
 	      userStore.login({
+	        username: this.refs.username.value.trim(),
+	        password: this.refs.password.value.trim()
+	      });
+	    }
+	  }, {
+	    key: 'handleRegisterClick',
+	    value: function handleRegisterClick() {
+	      userStore.register({
+	        username: this.refs.username.value.trim(),
+	        password: this.refs.password.value.trim()
+	      });
+	    }
+	  }, {
+	    key: 'handleLogoutClick',
+	    value: function handleLogoutClick() {
+	      userStore.logout({
 	        username: this.refs.username.value.trim(),
 	        password: this.refs.password.value.trim()
 	      });
@@ -32585,9 +32617,25 @@
 	          'button',
 	          {
 	            className: 'login-form__login-button',
-	            onClick: this.handleClick.bind(this)
+	            onClick: this.handleLoginClick.bind(this)
 	          },
 	          'Login'
+	        ),
+	        React.createElement(
+	          'button',
+	          {
+	            className: 'login-form__register-button',
+	            onClick: this.handleRegisterClick.bind(this)
+	          },
+	          'Register'
+	        ),
+	        React.createElement(
+	          'button',
+	          {
+	            className: 'login-form__register-button',
+	            onClick: this.handleLogoutClick.bind(this)
+	          },
+	          'Logout'
 	        ),
 	        React.createElement(
 	          'span',
