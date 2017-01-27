@@ -28,6 +28,35 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.get('/my', function(req, res, next) {
+	var target_id = req.user.id;
+	console.log('we are in my stories backend');
+	db.all(`
+		SELECT
+			comments.id, 
+			comments.user_id, 
+			comments.text, 
+			comments.liked,
+			users.avatar, 
+			users.name
+		FROM comments 
+			INNER JOIN users ON users.id = comments.user_id
+		WHERE comments.user_id = ? 
+		ORDER BY comments.id DESC
+	`, [target_id], function(err, comments) {
+		if (err) return next(err);
+		res.json(comments.map(function(comment) {
+			return {
+				id: comment.id,
+				userId: comment.user_id,
+				text: comment.text,
+				avatar: comment.avatar,
+				liked: comment.liked == 1
+			};
+		}));
+	});
+});
+
 router.post('/new', function(req, res, next) {
 	if (req.user) {
 		next();

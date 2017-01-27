@@ -57,8 +57,6 @@
 	ReactDOM.render(React.createElement(StoriesPage, null), $('#root').get(0));
 	
 	window.$ = $;
-	console.log("Hello");
-	console.log("New version");
 	commentStore.loadData();
 
 /***/ },
@@ -32084,6 +32082,22 @@
 	        }
 	      });
 	    }
+	  }, {
+	    key: 'showMyStories',
+	    value: function showMyStories(user_id) {
+	      console.log(user_id);
+	      var store = this;
+	      $.ajax({
+	        url: '/comments/my',
+	        method: 'get', dataType: 'json',
+	        data: user_id,
+	        success: function success(data) {
+	          console.log(data);
+	          store.state.comments = data;
+	          store.update();
+	        }
+	      });
+	    }
 	  }]);
 	
 	  return CommentStore;
@@ -32176,8 +32190,6 @@
 	  _createClass(UserStore, [{
 	    key: 'login',
 	    value: function login(userdata) {
-	      console.log(userdata);
-	      console.log('in login');
 	      var store = this;
 	      $.ajax({
 	        url: '/users/login',
@@ -32192,8 +32204,6 @@
 	  }, {
 	    key: 'register',
 	    value: function register(userdata) {
-	      console.log(userdata);
-	      console.log('in register');
 	      var store = this;
 	      $.ajax({
 	        url: '/users/register',
@@ -32208,7 +32218,6 @@
 	  }, {
 	    key: 'logout',
 	    value: function logout() {
-	      console.log('in logout');
 	      $.ajax({
 	        url: '/users/logout',
 	        method: 'post', dataType: 'json'
@@ -32655,7 +32664,7 @@
 /* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -32667,6 +32676,9 @@
 	
 	var React = __webpack_require__(5);
 	
+	var commentStore = __webpack_require__(189).commentStore;
+	var userStore = __webpack_require__(189).userStore;
+	
 	var StoriesSelector = function (_React$Component) {
 	  _inherits(StoriesSelector, _React$Component);
 	
@@ -32677,43 +32689,48 @@
 	  }
 	
 	  _createClass(StoriesSelector, [{
-	    key: "handleTopButtonClick",
+	    key: 'handleTopButtonClick',
 	    value: function handleTopButtonClick() {}
 	  }, {
-	    key: "handleMyIdeasButtonClick",
-	    value: function handleMyIdeasButtonClick() {}
+	    key: 'handleMyIdeasButtonClick',
+	    value: function handleMyIdeasButtonClick() {
+	      console.log('my ideas');
+	      console.log(userStore.state.user.id);
+	      commentStore.showMyStories(userStore.state.user.id);
+	    }
 	  }, {
-	    key: "handleNewButtonClick",
+	    key: 'handleNewButtonClick',
 	    value: function handleNewButtonClick() {}
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
+	      console.log('in render');
 	      return React.createElement(
-	        "div",
-	        { className: "stories-selector" },
+	        'div',
+	        { className: 'stories-selector' },
 	        React.createElement(
-	          "button",
+	          'button',
 	          {
-	            className: "stories_selector__new-button",
+	            className: 'stories_selector__new-button',
 	            onClick: this.handleNewButtonClick.bind(this)
 	          },
-	          "New"
+	          'New'
 	        ),
 	        React.createElement(
-	          "button",
+	          'button',
 	          {
-	            className: "stories_selector__top-button",
+	            className: 'stories_selector__top-button',
 	            onClick: this.handleTopButtonClick.bind(this)
 	          },
-	          "Top"
+	          'Top'
 	        ),
 	        React.createElement(
-	          "button",
+	          'button',
 	          {
-	            className: "stories_selector__my-ideas-button",
+	            className: 'stories_selector__my-ideas-button',
 	            onClick: this.handleMyIdeasButtonClick.bind(this)
 	          },
-	          "My Ideas"
+	          'My Ideas'
 	        )
 	      );
 	    }
