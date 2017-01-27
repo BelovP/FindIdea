@@ -22,11 +22,11 @@ $.ajax({
             }
         })
 
-// Static part
-ReacDom.render(
-	<MainContainer />,
-	$('body').get(0)
-);
+// // Static part
+// ReacDom.render(
+// 	<MainContainer />,
+// 	$('body').get(0)
+// );
 
 // Dynamic part
 ReactDOM.render(
@@ -35,6 +35,6 @@ ReactDOM.render(
 );
 
 window.$ = $;
-console.log("Hello");
-console.log('New version');
+// console.log("Hello");
+// console.log('New version');
 commentStore.loadData();
