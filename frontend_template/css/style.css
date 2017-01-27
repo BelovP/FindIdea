@@ -36,7 +36,7 @@ body {
   flex-direction: column;
   /* justify-content: space-around; */ 
   background-color: #dcdbdb;
-  width: 10%;
+  width: 20%;
 /*   padding-left: 5rem; */
   align-items:  center;
   align-content:  center;
@@ -65,6 +65,7 @@ body {
   flex-direction: column;
   justify-content: center;
   flex-basis:  auto;
+  align-content: flex-start;
   overflow: auto;
   /*background-color: #edf5ee;*/
   background-image: url('https://pp.vk.me/c633123/v633123508/381ff/XOYrcIzo_lA.jpg');

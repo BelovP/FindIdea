@@ -1,0 +1,63 @@
+/* Pen-specific styles */
+
+html, body{
+  height: 100%;
+}
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 150%;
+  text-align: center;
+  text-shadow: 0 2px 2px #b6701e;
+}
+
+
+
+/* Pattern styles */
+.container-fluid {
+  display: flex;
+  flex-direction: row;
+  /* /align-content:  stretch; */
+  /* justify-content: center; */
+  height:  100%;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 3.25rem;
+  line-height: 150%;
+  text-align: center;
+  text-shadow: 0 2px 2px #b6701e;
+
+}
+
+
+.centeredpart {
+  
+  /*background-color: #edf5ee;*/
+  background-image: url('https://pp.vk.me/c633123/v633123508/381ff/XOYrcIzo_lA.jpg');
+  background-color: rgba(0,0,0,0.9);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  flex:  1;
+  padding: 2.5em 3em; 
+}
+
+
+
+.home-info {
+}
+
+#root {
+  display: flex;
+  flex-direction:  column;
+  height: 100% ;
+}
+
+
