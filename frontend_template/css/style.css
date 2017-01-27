@@ -38,9 +38,36 @@ body {
   background-color: #dcdbdb;
   max-width: 20%;
 /*   padding-left: 5rem; */
-  align-items:  stretch;
-  align-content:  stretch;
+  align-items:  center;
+  align-content:  center;
 /*   height:auto; overflow:auto */
+
+}
+.pic-circle-corner {
+
+display: block;
+
+width: 100px;
+
+height: 100px;
+
+margin: .8em auto;
+
+background-size: cover;
+
+background-repeat: no-repeat;
+
+background-position: center center;
+
+-webkit-border-radius: 50%;
+
+-moz-border-radius: 50%;
+
+border-radius: 50%;
+
+border: 5px solid #eee;
+
+box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -52,7 +79,7 @@ body {
   flex-basis:  auto;
   /*background-color: #edf5ee;*/
   background-image: url('https://pp.vk.me/c633123/v633123508/381ff/XOYrcIzo_lA.jpg');
-  background-color: rgba(0,0,0,0.9);
+  background-color: #dcdbdb;
   background-size: 100;
   background-repeat: repeat-y;
   flex:  2;
